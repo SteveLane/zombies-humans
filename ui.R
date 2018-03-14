@@ -4,7 +4,7 @@ library(deSolve)
 exTxt <-
     'This simple application allows you to simulate a zombie invasion! Using the sliders, you can see how changing certain values affects the zombie and human population.
 
-See if you can use the sliders to make the humans beat the zombies by time 20! (Hint: you\'ll need to have the red line go flat (to 0) by time 20.'
+See if you can use the sliders to make the humans beat the zombies by time 20! (Hint: you\'ll need to have the red line above the green line at time 20).'
 
 fluidPage(
         
@@ -32,49 +32,50 @@ fluidPage(
             ),
             sliderInput(
                 "alpha",
-                "Human strength (growth rate)",
-                value = 0.5,
+                "Human strength",
+                value = 5,
                 min = 0,
-                max = 3,
-                step = 0.01
+                max = 30,
+                step = 0.1
             ),
             sliderInput(
                 "beta",
-                "Zombie attack rate",
-                value = 0.05,
+                "Zombie strength",
+                value = 5,
                 min = 0,
-                max = 1,
-                step = 0.01
+                max = 100,
+                step = 1
             ),
             sliderInput(
                 "gamma",
                 "Zombie cure rate",
-                value = 0.5,
+                value = 5,
                 min = 0,
-                max = 1,
-                step = 0.01
+                max = 10,
+                step = 0.1
             ),
             sliderInput(
                 "delta",
-                "Zombie strength rate",
-                value = 0.05,
+                "Zombie strength",
+                value = 5,
                 min = 0,
-                max = 1,
-                step = 0.01
+                max = 100,
+                step = 1
             )
         ),
      
         ## Show a plot of the solution
         mainPanel(
             fluidRow(
-                column(8, p(exTxt, style = "color:blue; font-size: 20px;"))
+                column(12, p(exTxt, style = "color:blue; font-size: 20px;"))
             ),
-            ## fluidRow(
-            ##     column(4, plotOutput("timeline")),
-            ##     column(4, plotOutput("phase"))
-            ## )
             fluidRow(
-                plotOutput("timeline")
+                column(6, plotOutput("timeline")),
+                column(6, plotOutput("phase"))
+            ),
+            fluidRow(
+                column(8, align = "center", imageOutput("winner")),
+                column(4, align = "left", htmlOutput("winner_text"))
             )
         )
         
