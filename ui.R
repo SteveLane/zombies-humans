@@ -2,15 +2,14 @@ library(shiny)
 library(deSolve)
 
 exTxt <-
-    "This simple calculator shows the sample size required to detect \\(m \\geq 1\\) infected units, from a lot with design prevalence \\(p\\). The number of infected units in the sample follows a hypergeometric distribution, given the number of infected units in the lot. Because of the requirement to use an integer number of infected units, the design prevalence is translated into the number of infected units in the lot, rounded down. This gives an <em>apparent</em> prevalence, lower than required design prevalence (a good thing &#12483;)."
+    'This simple application allows you to simulate a zombie invasion! Using the sliders, you can see how changing certain values affects the zombie and human population.
+
+See if you can use the sliders to make the humans beat the zombies by time 20! (Hint: you\'ll need to have the red line go flat (to 0) by time 20.'
 
 fluidPage(
-    
-    ## Need mathjax
-    withMathJax(),
-    
+        
     ## Application title
-    titlePanel("Sample size calculation for infected unit detection."),
+    titlePanel("Zombies vs. Humans!"),
     
     sidebarLayout(
         ## Sidebar with a slider input
@@ -68,7 +67,7 @@ fluidPage(
         ## Show a plot of the solution
         mainPanel(
             fluidRow(
-                column(8, h3("Description"), HTML(exTxt))
+                column(8, p(exTxt, style = "color:blue; font-size: 20px;"))
             ),
             ## fluidRow(
             ##     column(4, plotOutput("timeline")),
